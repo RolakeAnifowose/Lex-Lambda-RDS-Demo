@@ -1,0 +1,81 @@
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #ddd;
+  }
+
+  h1 {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+
+  p {
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+  }
+</style>
+
+<!doctype html>
+<html>
+  <head>
+    <title>My Appointments</title>
+  </head>
+  <body>
+    <h1>My Appointments</h1>
+    {% if msg %}
+        <p>{{ msg }}</p>
+    {% endif %}
+    {% if appointments %}
+    <table>
+      <tr>
+        <th>Appointment ID</th>
+        <th>Pet name</th>
+        <th>Pet type</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Actions</th>
+      </tr>
+      {% for appointment in appointments %}
+      <tr>
+        <td>{{ appointment.id }}</td>
+        <td>{{ appointment.pet_name }}</td>
+        <td>{{ appointment.pet_type }}</td>
+        <td>{{ appointment.date }}</td>
+        <td>{{ appointment.time }}</td>
+        <td>
+          <form action="/" method="POST">
+            <input type="hidden" name="appointment_id" value="{{ appointment.id }}">
+            <button type="submit">Cancel</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <p>You have no appointments.</p>
+    {% endif %}
+  </body>
+</html>
