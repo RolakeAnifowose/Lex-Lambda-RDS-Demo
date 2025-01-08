@@ -47,5 +47,5 @@ resource "aws_lambda_permission" "lex_lambda" {
   function_name = aws_lambda_function.appointment.function_name
   principal     = "lexv2.amazonaws.com"
   #source_arn    = "${aws_lexv2models_bot.AppointmentBot.arn}/*"
-  source_arn = "arn:aws:lex:us-east-1:556298987240:bot-alias/DQPPTSKBG3/TSTALIASID"
+  source_arn = "arn:aws:lex:us-east-1:<account-id>:bot-alias/DQPPTSKBG3/TSTALIASID"
 }
